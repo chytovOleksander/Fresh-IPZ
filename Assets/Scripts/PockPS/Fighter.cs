@@ -9,13 +9,16 @@ public class Fighter : MonoBehaviour
     [SerializeField]private int maxHealth = 3;
     [SerializeField]private string fighterName;
 
+    public int energy = 0;
+
     public Action<int, Fighter> onDamageTaken;
     public Action<Fighter> onFatalDamage;
     public Action<Fighter> onDeath;
     public Action<BattleAction, Fighter> onActionAdded;
     
-    private List<BattleAction> currentTurnActions = new();
-    private List<BattleAction> battleActions = new();
+    public List<BattleAction> currentTurnActions = new();
+    public List<BattleAction> battleActions = new();
+    public List<StatusEffect> statusEffects = new();
 
     public void AddCurrentTurnAction(BattleAction bAction)
     {
@@ -46,6 +49,32 @@ public class Fighter : MonoBehaviour
         currentTurnActions.Clear();
     }
 
-    //TO do: Add player and enemy classes inheriting Fighter class, add a game manager singleton with turns mechanic and game handling
-    // Add 3 basic rock paper scissors actions, add button class to choose actions in battle, add status effect class
+    public int CurrentHealth
+    {
+        get { return currentHealt; }
+        set { currentHealt = value; }
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.onNewTurn += NewTurn;
+        GameManager.Instance.fighters.Add(this);
+        GameManager.Instance.onTurnStarted += TurnStart;
+    }
+
+    private void TurnStart()
+    {
+        GameManager.Instance.allTurnActions.AddRange(currentTurnActions);
+    }
+
+    private void NewTurn(int turn)
+    {
+        foreach (var action in currentTurnActions) if(action != null)action.Delete();
+        currentTurnActions.Clear();
+        energy = turn;
+    }
+    //TO do: 
+    //  add button class to choose actions in battle. Test events using buttons, setup debug logs, extend action class to include
+    //  its duration, animation, set up turn planning for both sides, set up placeholder visuals for fighters, extend enemy class to include
+    //  animations.
 }
