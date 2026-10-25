@@ -57,9 +57,12 @@ public class Fighter : MonoBehaviour
     public int CurrentHealth
     {
         get { return currentHealt; }
-        set { currentHealt = value; }
+        set { currentHealt = Math.Abs(value); }
     }
-
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+    }
     protected virtual void Start()
     {
         GameManager.Instance.onNewTurn += NewTurn;
@@ -96,7 +99,8 @@ public class Fighter : MonoBehaviour
         Debug.Log(eff.ToString() + "is applied to" + ToString() + ". It's owner is:" + eff.owner);
     }
     //TO do: 
-    //  add button class to choose actions in battle. Test events using buttons, setup debug logs, extend action class to include
-    //  its duration, animation, set up turn planning for both sides, set up placeholder visuals for fighters, extend enemy class to include
-    //  animations.
+    //   extend action class to includeits duration, animation, set up turn planning for both sides,
+    //   set up placeholder visuals for fighters, extend enemy class to include animations.
+    //  add hud for both sides for health and energy, begin drawing icons in figma, :<
+    // think of the gameplay loop. Develop ui, action cancelling, action disabling. :<
 }

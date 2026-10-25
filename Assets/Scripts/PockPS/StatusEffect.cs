@@ -33,6 +33,7 @@ public abstract class StatusEffect : MonoBehaviour
 
     public virtual void Perish()
     {
+        if (this == null) return;
         owner.statusEffects.Remove(this);
         Debug.Log(ToString() + " is Perishing from " + owner.ToString());
         Destroy(gameObject);

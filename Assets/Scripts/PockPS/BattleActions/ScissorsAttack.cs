@@ -30,7 +30,7 @@ public class ScissorsAttack : BattleAction
 
     public override void FinishAction()
     {
-        bool actionFinished = true;
+        actionFinished = true;
     }
 
     

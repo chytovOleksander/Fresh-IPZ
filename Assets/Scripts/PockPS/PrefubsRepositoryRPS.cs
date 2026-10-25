@@ -9,8 +9,8 @@ public class PrefubsRepositoryRPS : MonoBehaviour
     [SerializeField] private BattleAction rockAttackActionPrefab;
     [SerializeField] private BattleAction scissorsChosenActionPrefab;
     [SerializeField] private BattleAction scissorsAttackActionPrefab;
-    //[SerializeField] private BattleAction paperChosenActionPrefab;
-    //[SerializeField] private BattleAction paperAttackActionPrefab;
+    [SerializeField] private BattleAction paperChosenActionPrefab;
+    [SerializeField] private BattleAction paperAttackActionPrefab;
 
     public static PrefubsRepositoryRPS Instance;
 
@@ -33,8 +33,8 @@ public class PrefubsRepositoryRPS : MonoBehaviour
             { typeof(RockAttack), rockAttackActionPrefab },
             {typeof(Scissors), scissorsChosenActionPrefab },
             {typeof(ScissorsAttack), scissorsAttackActionPrefab },
-            //{ typeof(Paper), paperChosenActionPrefab },
-            //{ typeof(PaperAttack), paperAttackActionPrefab }
+            { typeof(Paper), paperChosenActionPrefab },
+            { typeof(PaperAttack), paperAttackActionPrefab }
         };
     }
 
