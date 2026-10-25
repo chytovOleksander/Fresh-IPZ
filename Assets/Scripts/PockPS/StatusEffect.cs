@@ -17,7 +17,7 @@ public abstract class StatusEffect : MonoBehaviour
         negative,
         neutral
     }
-    private void Start()
+   protected virtual void Start()
     {
         GameManager.Instance.onNewTurn += SubtructDuration;
     }
@@ -34,6 +34,7 @@ public abstract class StatusEffect : MonoBehaviour
     public virtual void Perish()
     {
         owner.statusEffects.Remove(this);
+        Debug.Log(ToString() + " is Perishing from " + owner.ToString());
         Destroy(gameObject);
     }
  
