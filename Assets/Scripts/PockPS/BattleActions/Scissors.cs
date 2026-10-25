@@ -6,8 +6,13 @@ public class Scissors : BattleAction
     public GameObject scissorsEffPrefub;
     public override void Execute()
     {
-        ScissorsChosenEffect scissorsEff = scissorsEffPrefub.GetComponent<ScissorsChosenEffect>();
-        owner.statusEffects.Add(scissorsEff);
+        ScissorsChosenEffect scissorsEff = Instantiate(scissorsEffPrefub).GetComponent<ScissorsChosenEffect>();
+        owner.AddStatusEffect(scissorsEff);
+
+        ScissorsAttack scissors = Instantiate(PrefubsRepositoryRPS.Instance.GetPrefab<ScissorsAttack>()) as ScissorsAttack;
+        scissors.owner = owner;
+        GameManager.Instance.allTurnActions.Add(scissors);
+        GameManager.Instance.SortBySpeed(GameManager.Instance.allTurnActions);
         FinishAction();
     }
     private void Start()

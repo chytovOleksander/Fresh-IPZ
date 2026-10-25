@@ -16,6 +16,7 @@ public abstract class BattleAction : MonoBehaviour, IComparable
     public abstract void Execute();
     public void Delete()
     {
+        Debug.Log("Destroying " + ToString());
         Destroy(gameObject);
     }
     public abstract void FinishAction();

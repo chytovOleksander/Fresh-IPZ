@@ -10,19 +10,19 @@ public class RockAttack : BattleAction
         {
             if(fighter != owner) target = fighter;
         }
-        bool hasRock()
+        bool hasBlock()
         {
             foreach(var eff in target.statusEffects)
             {
-                if(eff is RockChosenEffect)
+                if(eff is RockChosenEffect || eff is PaperChosenEffect)
                 {
-                    Debug.Log("Keyword is worked with: effect is Script");
+                    Debug.Log("Keyword (is) correctly worked with: attack is blocked");
                     return true;
                 }
             }
             return false;
         }
-        if (!hasRock())
+        if (!hasBlock())
         {
             target.TakeDamage(1);
         }

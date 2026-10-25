@@ -119,6 +119,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &310049403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310049405}
+  - component: {fileID: 310049404}
+  m_Layer: 0
+  m_Name: PrefubsRepository
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &310049404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310049403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05288c58a342ac4781362c0e9815af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PrefubsRepositoryRPS
+  rockChosenActionPrefab: {fileID: 6555519473424834985, guid: 590fccfc448e3224faa9c5288cfa7e4c, type: 3}
+  rockAttackActionPrefab: {fileID: 2827458136771399063, guid: 3cff1f6b8a653e943bac410a818e00f1, type: 3}
+  scissorsChosenActionPrefab: {fileID: 5646407384648068176, guid: 45f79a8f29839da49a41d688c3d9c2d8, type: 3}
+  scissorsAttackActionPrefab: {fileID: 1438761761309545387, guid: 949331da2a3c8f24bbbdc39be26d92a6, type: 3}
+  paperChosenActionPrefab: {fileID: 2317439858200381349, guid: 995fa7e1d7bca854ba5cfe2f1bbbf2b9, type: 3}
+  paperAttackActionPrefab: {fileID: 5072818888063079959, guid: cd7dafa8e04bea74691c7c902196cab0, type: 3}
+--- !u!4 &310049405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310049403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 291.53427, y: 41.59639, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510724915
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +181,7 @@ GameObject:
   - component: {fileID: 510724919}
   - component: {fileID: 510724918}
   - component: {fileID: 510724917}
+  - component: {fileID: 510724920}
   m_Layer: 5
   m_Name: Scissors
   m_TagString: Untagged
@@ -240,6 +291,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510724915}
   m_CullTransparentMesh: 1
+--- !u!114 &510724920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510724915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094cb5e9c19bc5f4d840549834de0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionButton
+  playerBattleActionsId: 1
 --- !u!1 &552328129
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc1f42417e040f49bf014b89889776a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  Player: {fileID: 0}
+  Player: {fileID: 1565520360}
   fighters: []
   currentTurn: 0
   allTurnActions: []
@@ -707,6 +771,7 @@ GameObject:
   - component: {fileID: 903399463}
   - component: {fileID: 903399462}
   - component: {fileID: 903399461}
+  - component: {fileID: 903399464}
   m_Layer: 5
   m_Name: Rock
   m_TagString: Untagged
@@ -777,19 +842,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 903399462}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 762242008}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &903399462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,6 +881,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903399459}
   m_CullTransparentMesh: 1
+--- !u!114 &903399464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903399459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094cb5e9c19bc5f4d840549834de0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionButton
+  playerBattleActionsId: 0
 --- !u!1 &1016862027
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +906,7 @@ GameObject:
   - component: {fileID: 1016862031}
   - component: {fileID: 1016862030}
   - component: {fileID: 1016862029}
+  - component: {fileID: 1016862032}
   m_Layer: 5
   m_Name: Paper
   m_TagString: Untagged
@@ -949,6 +1016,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016862027}
   m_CullTransparentMesh: 1
+--- !u!114 &1016862032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016862027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094cb5e9c19bc5f4d840549834de0fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionButton
+  playerBattleActionsId: 2
 --- !u!1 &1042556967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1418,8 @@ MonoBehaviour:
   currentTurnActions: []
   battleActions:
   - {fileID: 6555519473424834985, guid: 590fccfc448e3224faa9c5288cfa7e4c, type: 3}
+  - {fileID: 5646407384648068176, guid: 45f79a8f29839da49a41d688c3d9c2d8, type: 3}
+  - {fileID: 2317439858200381349, guid: 995fa7e1d7bca854ba5cfe2f1bbbf2b9, type: 3}
   statusEffects: []
 --- !u!4 &1565520361
 Transform:
@@ -1845,7 +1927,11 @@ MonoBehaviour:
   fighterName: Red rect
   energy: 0
   currentTurnActions: []
-  battleActions: []
+  battleActions:
+  - {fileID: 6555519473424834985, guid: 590fccfc448e3224faa9c5288cfa7e4c, type: 3}
+  - {fileID: 5646407384648068176, guid: 45f79a8f29839da49a41d688c3d9c2d8, type: 3}
+  - {fileID: 2317439858200381349, guid: 995fa7e1d7bca854ba5cfe2f1bbbf2b9, type: 3}
+  - {fileID: 4756652875355962990, guid: d3548acdeae46f446b0d23f4fd18b17a, type: 3}
   statusEffects: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1857,3 +1943,4 @@ SceneRoots:
   - {fileID: 1925478850}
   - {fileID: 762242010}
   - {fileID: 1565520361}
+  - {fileID: 310049405}

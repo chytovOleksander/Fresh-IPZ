@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7954647004815132485
+--- !u!1 &2716568474410528303
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2895633349213223675}
-  - component: {fileID: 3541199453599362282}
+  - component: {fileID: 2705250410138299512}
+  - component: {fileID: 58543919416023426}
   m_Layer: 0
-  m_Name: RockEffect
+  m_Name: HealOverTimeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2895633349213223675
+--- !u!4 &2705250410138299512
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7954647004815132485}
+  m_GameObject: {fileID: 2716568474410528303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 291.53427, y: 41.59639, z: 0}
@@ -32,21 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3541199453599362282
+--- !u!114 &58543919416023426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7954647004815132485}
+  m_GameObject: {fileID: 2716568474410528303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e1c8a818d99c7f4f99d37790aa497bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dfc9d3eaa971d24a9fb80203efbbdd3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RockChosenEffect
-  duration: 1
+  m_EditorClassIdentifier: Assembly-CSharp::HealOverTimeEffect
+  duration: 5
   owner: {fileID: 0}
-  effectName: Rock
-  effectDescription: Plays Rock this turn
+  effectName: Recovering
+  effectDescription: 'Restores 1 hp every 2 turns, perishes if this fighter gets
+    hit '
   effectImage: {fileID: 0}
   effectPositivity: 0

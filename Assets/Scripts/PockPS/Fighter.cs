@@ -11,7 +11,7 @@ public class Fighter : MonoBehaviour
 
     public int energy = 0;
 
-    public Action<int, Fighter> onDamageTaken;
+    public Action<int, Fighter, BattleAction> onDamageTaken;
     public Action<Fighter> onFatalDamage;
     public Action<Fighter> onDeath;
     public Action<BattleAction, Fighter> onActionAdded;
@@ -21,21 +21,26 @@ public class Fighter : MonoBehaviour
     public List<StatusEffect> statusEffects = new();
 
     public void AddCurrentTurnAction(BattleAction bAction)
-    {
-        currentTurnActions.Add(bAction);
-        onActionAdded.Invoke(bAction, this);
-        //currentTurnActions.Sort();
+    { 
+        bAction.owner = this;
+        currentTurnActions.Add(Instantiate(bAction));
+        Debug.Log(this + " Added currentTurnAction " + bAction.name);
+        foreach (var action in currentTurnActions)
+        {
+            Debug.Log(action.ToString() + " Action" );
+        }
+        onActionAdded?.Invoke(bAction, this);
     }
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, BattleAction source = null)
     {
-        onDamageTaken.Invoke(damage, this);
+        onDamageTaken?.Invoke(damage, this, source);
         currentHealt -= damage;
         if(currentHealt <= 0)
         {
-            onFatalDamage.Invoke(this);
+            onFatalDamage?.Invoke(this);
             if(currentHealt <= 0)
             {
-                onDeath.Invoke(this);
+                onDeath?.Invoke(this);
             }
         }
     }
@@ -52,29 +57,50 @@ public class Fighter : MonoBehaviour
     public int CurrentHealth
     {
         get { return currentHealt; }
-        set { currentHealt = value; }
+        set { currentHealt = Math.Abs(value); }
     }
-
-    private void Start()
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+    }
+    protected virtual void Start()
     {
         GameManager.Instance.onNewTurn += NewTurn;
         GameManager.Instance.fighters.Add(this);
         GameManager.Instance.onTurnStarted += TurnStart;
+
+        //for(int i = 0; i<battleActions.Count; i++)
+        //{
+        //    BattleAction obj = Instantiate(battleActions[i]);
+        //    obj.owner = this;
+        //}
     }
 
     private void TurnStart()
     {
+        Debug.Log(currentTurnActions.Count);
         GameManager.Instance.allTurnActions.AddRange(currentTurnActions);
+        Debug.Log(this.ToString() + "received event onTurnStarted");
+
     }
 
     private void NewTurn(int turn)
     {
         foreach (var action in currentTurnActions) if(action != null)action.Delete();
         currentTurnActions.Clear();
-        energy = turn;
+        energy += 5;
+    }
+
+    public virtual void AddStatusEffect(StatusEffect eff)
+    {
+        statusEffects.Add(eff);
+        
+        eff.owner = this;
+        Debug.Log(eff.ToString() + "is applied to" + ToString() + ". It's owner is:" + eff.owner);
     }
     //TO do: 
-    //  add button class to choose actions in battle. Test events using buttons, setup debug logs, extend action class to include
-    //  its duration, animation, set up turn planning for both sides, set up placeholder visuals for fighters, extend enemy class to include
-    //  animations.
+    //   extend action class to includeits duration, animation, set up turn planning for both sides,
+    //   set up placeholder visuals for fighters, extend enemy class to include animations.
+    //  add hud for both sides for health and energy, begin drawing icons in figma, :<
+    // think of the gameplay loop. Develop ui, action cancelling, action disabling. :<
 }
