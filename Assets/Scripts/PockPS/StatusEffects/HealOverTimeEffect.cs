@@ -7,10 +7,14 @@ public class HealOverTimeEffect : StatusEffect
     protected override void Start()
     {
         base.Start();
-        owner.onDamageTaken += (int n, Fighter owner, BattleAction a) => Perish();
+        owner.onDamageTaken += SubPerish;
         GameManager.Instance.onNewTurn += TryHeal;
     }
 
+    void SubPerish(int n, Fighter owner, BattleAction a)
+    {
+        Perish();
+    }
     private void TryHeal(int turn)
     {
         turnCounter++;
@@ -24,5 +28,10 @@ public class HealOverTimeEffect : StatusEffect
             else Perish();
             
         }
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.onNewTurn -= TryHeal;
+        owner.onDamageTaken -= SubPerish;
     }
 }

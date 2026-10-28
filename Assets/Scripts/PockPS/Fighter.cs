@@ -94,13 +94,13 @@ public class Fighter : MonoBehaviour
     public virtual void AddStatusEffect(StatusEffect eff)
     {
         statusEffects.Add(eff);
-        
+        UIManager.Instance.AddStatusEffect(eff, this);
         eff.owner = this;
         Debug.Log(eff.ToString() + "is applied to" + ToString() + ". It's owner is:" + eff.owner);
     }
     //TO do: 
-    //   extend action class to includeits duration, animation, set up turn planning for both sides,
+    //  set up turn planning for both sides,
     //   set up placeholder visuals for fighters, extend enemy class to include animations.
-    //  add hud for both sides for health and energy, begin drawing icons in figma, :<
+    // 
     // think of the gameplay loop. Develop ui, action cancelling, action disabling. :<
 }

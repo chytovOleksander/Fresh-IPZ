@@ -20,6 +20,7 @@ public abstract class StatusEffect : MonoBehaviour
    protected virtual void Start()
     {
         GameManager.Instance.onNewTurn += SubtructDuration;
+        effectImage = GetComponent<Image>();
     }
 
     public virtual void SubtructDuration(int obj)
@@ -35,7 +36,9 @@ public abstract class StatusEffect : MonoBehaviour
     {
         if (this == null) return;
         owner.statusEffects.Remove(this);
+        UIManager.Instance.RemoveStatusEffect(this, owner);
         Debug.Log(ToString() + " is Perishing from " + owner.ToString());
+        GameManager.Instance.onNewTurn -= SubtructDuration;
         Destroy(gameObject);
     }
  
